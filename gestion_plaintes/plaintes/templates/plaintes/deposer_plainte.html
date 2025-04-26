@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Déposer une plainte</title>
+</head>
+<body>
+    <h1>📋 Déposer une plainte</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Envoyer la plainte 🚀</button>
+    </form>
+
+    <p><a href="{% url 'accueil_citoyen' %}">⬅️ Retour à l'accueil</a></p>
+</body>
+</html>

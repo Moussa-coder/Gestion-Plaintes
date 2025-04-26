@@ -1,5 +1,6 @@
 from django.urls import path
 from . views import inscription, connexion, deconnexion
+from . import views
 
 urlpatterns = [
     path('inscription/', views.inscription, name='inscription'),
