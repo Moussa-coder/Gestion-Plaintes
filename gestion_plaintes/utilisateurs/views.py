@@ -8,7 +8,7 @@ def inscription(request):
         form = CitoyenInscriptionForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('connexion')  # on fera la page de connexion juste après
+            return redirect('connexion')  
     else:
         form = CitoyenInscriptionForm()
     return render(request, 'utilisateurs/inscription.html', {'form': form})
