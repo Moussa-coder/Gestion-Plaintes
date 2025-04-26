@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil Citoyen</title>
+</head>
+<body>
+    <h1>Bienvenue {{ user.first_name }} {{ user.last_name }} ! 👋</h1>
+
+    <p>Que voulez-vous faire ?</p>
+
+    <ul>
+        <li><a href="{% url 'deposer_plainte' %}">➤ Déposer une plainte</a></li>
+        <li><a href="{% url 'mes_plaintes' %}">➤ Voir mes plaintes</a></li>
+    </ul>
+
+    <p><a href="{% url 'logout' %}">🚪 Déconnexion</a></p>
+</body>
+</html>
