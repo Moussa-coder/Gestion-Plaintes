@@ -1,0 +1,27 @@
+<form method="POST" enctype="multipart/form-data"> 
+    {% csrf_token %}
+
+    {% if form.errors %}
+        <div class="errors">
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {{ form.as_p }}  
+
+    <label for="statut">Statut</label>
+    <select name="statut" id="statut">
+        {% for statut in statuts %}
+            <option value="{{ statut.id }}" {% if statut.id == plainte.statut.id %}selected{% endif %}>
+                {{ statut.nom }}
+            </option>
+        {% endfor %}
+    </select>
+    
+    <button type="submit">Mettre à jour</button>
+</form>
+

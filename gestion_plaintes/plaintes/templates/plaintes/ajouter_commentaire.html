@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Ajouter un commentaire à la plainte n°{{ plainte.id }}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Envoyer le commentaire</button>
+  </form>
+  <a href="{% url 'admin:index' %}">← Retour à l’admin</a>
+{% endblock %}

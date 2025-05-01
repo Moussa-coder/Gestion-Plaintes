@@ -1,5 +1,5 @@
 from django import forms
-from .models import Plainte
+from .models import Commentaire, Plainte
 
 class PlainteForm(forms.ModelForm):
     class Meta:
@@ -8,3 +8,8 @@ class PlainteForm(forms.ModelForm):
         widgets = {
             'description': forms.Textarea(attrs={'rows': 4}),
         }
+
+class CommentaireForm(forms.ModelForm):
+    class Meta:
+        model = Commentaire
+        fields = ['commentaire']

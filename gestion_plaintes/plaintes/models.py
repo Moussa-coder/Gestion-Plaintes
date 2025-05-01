@@ -24,3 +24,12 @@ class Plainte(models.Model):
 
     def __str__(self):
         return f"Plainte {self.id} par {self.utilisateur.username}"
+
+class Commentaire(models.Model):
+    plainte = models.ForeignKey(Plainte, on_delete=models.CASCADE)
+    admin = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    commentaire = models.TextField()
+    date_commentaire = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Commentaire de {self.admin.username} sur plainte {self.plainte.id}"

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Mes plaintes</h2>
+
+  <table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Catégorie</th>
+        <th>Description</th>
+        <th>Localisation</th>
+        <th>Date</th>
+        <th>Statut</th>
+        <th>Photo</th>
+        <th>Commentaires</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for plainte in plaintes %}
+        <tr>
+          <td>{{ plainte.categorie.nom }}</td>
+          <td>{{ plainte.description|truncatechars:50 }}</td>
+          <td>{{ plainte.localisation }}</td>
+          <td>{{ plainte.date_creation|date:"d/m/Y H:i" }}</td>
+          <td>{{ plainte.statut.nom }}</td>
+          <td>
+            {% if plainte.photo %}
+              <img src="{{ plainte.photo.url }}" width="100">
+            {% else %}
+              Pas de photo
+            {% endif %}
+          </td>
+          <td>
+            {% for commentaire in plainte.commentaire_set.all %}
+              <p>— {{ commentaire.texte }} <br><small>le {{ commentaire.date_creation|date:"d/m/Y H:i" }}</small></p>
+            {% empty %}
+              Aucun commentaire.
+            {% endfor %}
+          </td>
+          <td>
+            <a href="{% url 'modifier_plainte_et_statut' plainte.id %}">Modifier</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="8">Aucune plainte déposée pour l'instant.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
